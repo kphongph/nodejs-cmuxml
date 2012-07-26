@@ -1,0 +1,10 @@
+{
+  "name" : "nodejs-cmuxml",
+  "version" : "0.0.1",
+  "dependencies" : {
+    "express" : "*",
+    "xml2js" : "*",
+    "jade" : "*",
+    "now" : "*"
+  }
+}
