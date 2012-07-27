@@ -8,6 +8,4 @@ html
     h1 Hello
     script(type='text/x-handlebars')
       b {{XMLM.name}}
-      | {{#with XMLM.xmlController.content}}
-      |   {{name}}
-      | {{/with}}
+      | {{XMLM.xmlController.content.display}}
