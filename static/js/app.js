@@ -14,16 +14,17 @@ XMLM.childrenController = Ember.ArrayController.create({
   content:[],
 });
 
-XMLM.displayView = Ember.View.extend({
-  
-});
 
 XMLM.Element = Ember.Object.extend({
-  name:null,
-  attributes:[],
-  children:[],
+  attributes:null,
+  children:null,
+  init: function() {
+    this._super();
+    this.set('attributes',[]);
+    this.set('children',[]);
+  },
   parseJSON:function(data) {
-    self = this;
+    var self = this;
     $.each(data, function(key, value) {
       if(key=='@') {
         $.each(value, function(attr_name, attr_value) {
@@ -31,30 +32,48 @@ XMLM.Element = Ember.Object.extend({
            var attr_obj = XMLM.Attribute.create({key:attr_name,value:attr_value});
            self.get('attributes').pushObject(attr_obj);
         });
-        var tmp = XMLM.Element.create({name:'test1'});
-        self.get('children').pushObject(tmp);
-        self.set('name','PK');
-        console.log('add child');
-      } 
+      } else {
+        var children = self.get('children');
+        var child = XMLM.Element.create({name:key});
+        console.log('+Add child <' + key +'> to '+self.get('name'));
+        console.log('Add child value ' + JSON.stringify(value));
+        console.log(typeof value);
+        if(typeof value === 'object') {
+          console.log('+parseJSON for '+key+' '+self.get('name'));
+          child.parseJSON(value);
+          children.pushObject(child);
+          console.log('-Add child <' + key +'> to '+self.get('name'));
+          console.log('-parseJSON for '+key+' '+self.get('name'));
+        } else {
+          if(typeof value === 'string') {
+            child.set('text',value);
+            console.log('Set text value ' + JSON.stringify(value));
+            children.pushObject(child);
+            console.log('-Add child <' + key +'> to '+self.get('name'));
+          }
+        }
+      }
     });
+    console.log('return from parseJSON');
+    return;
   },
   display:function() {
-    console.log('Display');
     var name = this.get('name');
     var str = '<'+name;
     $.each(this.get('attributes'), function(index, value) {
       str += ' '+value.key + '="' + value.value+'"';
-      console.log(JSON.stringify(value));
     });
     str+='>';
-    console.log('get children');
     $.each(this.get('children'),function(index, value) {
-    //  console.log(JSON.stringify(value));
-    //  str += value.get('display');
+      str += value.get('display');
     });
+    var text = this.get('text');
+    if(typeof text === 'string') {
+      str += text;
+    }
     str += '</'+name+'>';
     return str;
-  }.property('name','attributes','children','display').cacheable()
+  }.property('name','attributes.@each','children.@each','display','text')
 });
 
 XMLM.xmlController = Ember.Object.create({
@@ -69,15 +88,6 @@ XMLM.xmlController = Ember.Object.create({
     $.getJSON('ajax/loadxml', function(data) {
       self.set('xml', data);
       self.get('content').parseJSON(data);
-    });
-  }
-});
-
-XMLM.elementController = Ember.Object.create({
-  content: XMLM.Element.create({name:"Phongphun"}),
-  load: function() {
-    $.getJSON('ajax/loadxml', function(data) {
-      XMLM.elementController.content.set('name',JSON.stringify(data));
     });
   }
 });
