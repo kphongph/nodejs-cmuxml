@@ -2,12 +2,12 @@ html
   head
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     script(src='/static/js/ember-0.9.8.1.min.js')
-    script(src='http://localhost:3000/nowjs/now.js')
+    //- script(src='/nowjs/now.js')
     script(src='/static/js/app.js')
   body
     h1 Hello
     script(type='text/x-handlebars')
       b {{XMLM.name}}
-      | {{#with XMLM.elementController.content}}
+      | {{#with XMLM.xmlController.content}}
       |   {{name}}
       | {{/with}}
