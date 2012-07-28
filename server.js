@@ -4,7 +4,7 @@ var fs = require('fs');
 var app = express.createServer();
 
 app.configure(function() {
-  app.use('/static/js', express.static(__dirname+'/static/js'));
+  app.use('/static', express.static(__dirname+'/static'));
   app.set('view engine', 'jade');
   app.set('view options', {layout:false});
 });
