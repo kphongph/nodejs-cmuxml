@@ -70,5 +70,11 @@ App.xmlController = Ember.Object.create({
 
 App.ElementView = Ember.View.extend({
   tagName: 'ul',
-  templateName: 'XMLViewer'
+  templateName: 'XMLViewer',
+  mouseDown: function() {
+    var element = this.get('content');
+    console.log(element.get('name'));
+    element.set('name','click');
+    return false;
+  }
 });

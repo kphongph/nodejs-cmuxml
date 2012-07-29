@@ -7,7 +7,7 @@ html
     script(src='/static/js/app.js')
   body
     script(type='text/x-handlebars',data-template-name='XMLViewer')
-      | <b>&#60;</b><b class="tag">{{content.name}}</b>
+      | <b>&lt;</b><b class="tag">{{content.name}}</b>
       | {{#each content.attributes }}
       |   {{this.key}}="{{this.value}}" 
       | {{/each}}
