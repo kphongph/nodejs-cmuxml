@@ -13,6 +13,7 @@ App.Attribute = Ember.Object.extend({
 App.Element = Ember.Object.extend({
   attributes:null,
   children:null,
+  show:null,
   init: function() {
     this._super();
     this.set('attributes',[]);
@@ -34,15 +35,18 @@ App.Element = Ember.Object.extend({
             $.each(value, function(idx, array_obj) {
               var tmp_child = App.Element.create({name:key});
               tmp_child.parseJSON(array_obj);
+              tmp_child.set('show',true);
               children.pushObject(tmp_child);
             });
           } else {
             child.parseJSON(value);
+            child.set('show',true);
             children.pushObject(child);
           }
         } else {
           if(typeof value === 'string') {
             child.set('text',value);
+            child.set('show',true);
             children.pushObject(child);
           }
         }
@@ -61,6 +65,7 @@ App.xmlController = Ember.Object.create({
     self = this;
     var root = App.Element.create({name:'xml'});
     self.set('content', root);
+    root.set('show',true);
     $.getJSON('ajax/loadxml', function(data) {
       self.set('xml', data);
       self.get('content').parseJSON(data);
@@ -74,7 +79,12 @@ App.ElementView = Ember.View.extend({
   mouseDown: function() {
     var element = this.get('content');
     console.log(element.get('name'));
-    element.set('name','click');
+    var show = element.get('show');
+    if(show) {
+        element.set('show',false);
+    } else {
+        element.set('show',true);
+    }
     return false;
   }
 });

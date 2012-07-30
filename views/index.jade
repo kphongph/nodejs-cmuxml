@@ -1,23 +1,30 @@
 html
-  head
+  head 
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js')
     script(src='/static/js/ember-0.9.8.1.min.js')
     link(rel='stylesheet', href='/static/style.css')
     //- script(src='/nowjs/now.js')
     script(src='/static/js/app.js')
   body
-    script(type='text/x-handlebars',data-template-name='XMLViewer')
-      | <b>&lt;</b><b class="tag">{{content.name}}</b>
-      | {{#each content.attributes }}
-      |   {{this.key}}="{{this.value}}" 
-      | {{/each}}
-      | <b>&#62;</b>
-      | {{#each content.children }}
-      |   {{view App.ElementView contentBinding="this" }}
-      | {{/each}}
+    script(type='text/x-handlebars',data-template-name='XMLViewer')            
+      | <font color="red"><b>{{#if content.show }} -  {{else}} + {{/if}}</b></font>
+      b &lt;
+      b(class="tag") {{content.name}}
+      |  {{#each content.attributes }}
+      |     {{this.key}}="{{this.value}}" 
+      |  {{/each}}
+      b &gt;
+      | {{#if content.show }}
+      |   {{#each content.children }}
+      |     {{view App.ElementView contentBinding="this" }}
+      |   {{/each}}
       | {{content.text}}
+      | {{/if}}
       | <b>&#60;&#47;</b><b class="tag">{{content.name}}</b><b>&#62;</b>
-
-    script(type='text/x-handlebars')
-      b {{App.name}} 1234
-      | {{view App.ElementView contentBinding="App.xmlController.content" }}
+      
+    table
+        tr
+            td            
+                script(type='text/x-handlebars')
+                    b {{App.name}}
+                    | {{view App.ElementView contentBinding="App.xmlController.content" }}
