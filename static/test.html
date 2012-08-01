@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="/static/js/ember-0.9.8.1.min.js"></script>        
+        <script src="/static/js/app_test.js"></script>
+        <link href='/static/style.css' rel='stylesheet' type='text/css'>                        
+        
+    </head>    
+    <body>
+         
+    
+    <table>
+        <tr>
+            <td width="75%">
+                <h1>XML Manipulation</h1>
+                    <h2>submitting xml </h2>
+                        <script type="text/x-handlebars">                              
+                            {{view Ember.TextArea rows="10" valueBinding="App.xmlController.xml_string" }}                            
+                              
+                            {{#view App.JSONDisplayView }}                                    
+                                <a href="#" {{action "transform" on="click"}}>GET JSON</a>
+                                {{content}}
+                            {{/view}}
+                              
+                           {{view Ember.TextArea rows="10" valueBinding="App.xmlController.handlebars_string" }}                            
+
+                             {{#view App.XMLDisplayView }}                                    
+                                <a href="#" {{action "transform" on="click"}}>Transform</a>
+                                {{content}}
+                            {{/view}}
+
+                             
+                              
+                        </script>
+            </td>    
+            <td width="25%">
+                <script type="text/x-handlebars">
+
+                     </script>
+            </td>
+        </tr>
+    </table>
+    
+    
+
+
+
+    
+    </body>
+</html>

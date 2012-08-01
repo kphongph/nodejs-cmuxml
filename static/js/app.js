@@ -7,13 +7,16 @@ App = Ember.Application.create({
 
 App.Attribute = Ember.Object.extend({
   key:null,
-  value:null
+  value:null,
+
 });
 
 App.Element = Ember.Object.extend({
   attributes:null,
   children:null,
   show:null,
+
+  
   init: function() {
     this._super();
     this.set('attributes',[]);
@@ -58,6 +61,7 @@ App.Element = Ember.Object.extend({
 App.xmlController = Ember.Object.create({
   content: null,
   xml: null,
+
   xml_text:function() {
     return JSON.stringify(this.get('xml'));
   }.property('xml'),
@@ -66,17 +70,22 @@ App.xmlController = Ember.Object.create({
     var root = App.Element.create({name:'xml'});
     self.set('content', root);
     root.set('show',true);
+    
     $.getJSON('ajax/loadxml', function(data) {
       self.set('xml', data);
       self.get('content').parseJSON(data);
     });
-  }
+
+  },
+
+    
 });
 
 App.ElementView = Ember.View.extend({
   tagName: 'ul',
   templateName: 'XMLViewer',
-  mouseDown: function() {
+
+  click: function() {
     var element = this.get('content');
     console.log(element.get('name'));
     var show = element.get('show');
@@ -84,7 +93,15 @@ App.ElementView = Ember.View.extend({
         element.set('show',false);
     } else {
         element.set('show',true);
+
     }
     return false;
-  }
+  },
+  
+  
 });
+
+
+
+
+
