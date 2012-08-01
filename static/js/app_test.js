@@ -1,3 +1,4 @@
+
 App = Ember.Application.create();
 
 App.xmlController = Ember.Object.create({
