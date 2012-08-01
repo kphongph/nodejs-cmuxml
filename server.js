@@ -23,6 +23,8 @@ app.get('/test', function(req, res) {
   res.end(fs.readFileSync(__dirname+'/static/test.html'));    
 });
 
+
+
 app.post('/ajax/xml2json', function(req, res) {
 
     //explicitCharkey: false

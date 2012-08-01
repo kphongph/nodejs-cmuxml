@@ -1,8 +1,4 @@
-App = Ember.Application.create({
-    formatJSON: function(obj) {
-        return JSON.stringify(obj, null, '\t');
-    }
-});
+App = Ember.Application.create();
 
 App.xmlController = Ember.Object.create({
     content: null,

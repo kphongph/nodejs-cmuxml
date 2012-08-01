@@ -1,3 +1,24 @@
+body {
+    margin:0; padding:0;
+    font-family: Lucida Grande, Verdana, Geneva, Sans-serif;
+    font-size: 14px;
+    background:#fff;
+    font-weight: normal;
+}
+
 .tag {
   color:green;
+}
+
+.input {
+  background: #504f4f;
+  	width: 600px;
+	height: 120px;
+	/*border: 1px solid #cccccc;*/
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-position: bottom right;
+	background-repeat: no-repeat;
+    color: #FFFFFF
+
 }
