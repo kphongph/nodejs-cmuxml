@@ -25,14 +25,15 @@ App.xmlController = Ember.Object.create({
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",                        
                 success: function(data) {                    
-                    self.set('json_string', JSON.stringify(data));                    
+                    self.set('json_string', JSON.stringify(data));
+                    self.transform();
                 }
             });
         }
     },
     transform: function() {
         var template = Handlebars.compile(this.get('handlebars_string'));
-        console.log(JSON.parse(this.get('json_string')));
+        //console.log(JSON.parse(this.get('json_string')));
         this.set('content',template(JSON.parse(this.get('json_string'))));                
     }
 });       
@@ -40,17 +41,32 @@ App.xmlController = Ember.Object.create({
 App.JSONDisplayView = Ember.View.extend({
     contentBinding: 'App.xmlController.json_string',
     controllerBinding:'App.xmlController',
-    transform: function(event) {
-        this.get('controller').submitXML();
-    }
 });
 
 App.XMLDisplayView = Ember.View.extend({
     contentBinding: 'App.xmlController.content',
+    controllerBinding:'App.xmlController',    
+});
+
+App.XMLEditorView = Ember.TextArea.extend({
+    rows:"10",
+    valueBinding:"App.xmlController.xml_string",
     controllerBinding:'App.xmlController',
-    transform: function(event) {
-        this.get('controller').transform();
+    classNames:"input",
+    keyDown:function(event){
+        this.get('controller').submitXML();
     }
+});
+
+App.JSONEditorView = Ember.TextArea.extend({
+    rows:"10",
+    valueBinding:"App.xmlController.handlebars_string",
+    controllerBinding:'App.xmlController',
+    classNames:"input",
+    keyDown:function(event){
+        this.get('controller').transform();
+    },
+
 });
 
 

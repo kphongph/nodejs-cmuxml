@@ -39,7 +39,7 @@ app.post('/ajax/xml2json', function(req, res) {
         attrkey: "$",
         charkey: "_",
         explicitArray: false,
-        mergeAttrs: true,
+        mergeAttrs: false,
         explicitRoot: true,
         normalize: false,
     });
