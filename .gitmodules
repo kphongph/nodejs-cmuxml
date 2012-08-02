@@ -7,3 +7,6 @@
 [submodule "static/js/lib/emberjs"]
 	path = static/js/lib/emberjs
 	url = https://github.com/emberjs/ember.js.git
+[submodule "static/js/lib/jquery"]
+	path = static/js/lib/jquery
+	url = https://github.com/jquery/jquery.git
