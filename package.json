@@ -4,7 +4,6 @@
   "dependencies" : {
     "express" : "*",
     "xml2js" : "*",
-    "jade" : "*",
-    "node_xslt": "*"
+    "jade" : "*"
   }
 }

@@ -14,7 +14,6 @@ app.get('/', function(req, res) {
   // res.render('index');
   res.writeHead(200, {'Content-Type': 'text/html'});  
   res.end(fs.readFileSync(__dirname+'/static/index.html'));
-    
 });
 
 app.get('/test', function(req, res) {

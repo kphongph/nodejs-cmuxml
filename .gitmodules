@@ -1,0 +1,9 @@
+[submodule "static/js/lib/requirejs"]
+	path = static/js/lib/requirejs
+	url = https://github.com/jrburke/requirejs.git
+[submodule "static/js/lib/ace"]
+	path = static/js/lib/ace
+	url = https://github.com/ajaxorg/ace.git
+[submodule "static/js/lib/emberjs"]
+	path = static/js/lib/emberjs
+	url = https://github.com/emberjs/ember.js.git

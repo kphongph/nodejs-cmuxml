@@ -20,5 +20,11 @@ body {
 	background-position: bottom right;
 	background-repeat: no-repeat;
     color: #FFFFFF
+}
 
+
+#editor {
+  width: 950px;
+  height: 600px;
+  position: relative;
 }

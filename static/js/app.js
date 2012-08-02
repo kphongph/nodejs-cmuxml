@@ -1,107 +1,62 @@
-App = Ember.Application.create({
-  name:"XML Manipulation",
-  ready: function() {
-    App.xmlController.load();
+requirejs.config({
+  paths: {
+    ace:'lib/ace/lib/ace/'
   }
 });
 
-App.Attribute = Ember.Object.extend({
-  key:null,
-  value:null,
-
-});
-
-App.Element = Ember.Object.extend({
-  attributes:null,
-  children:null,
-  show:null,
-
+define(function(require, exports, modules) {
+  require('lib/jquery-1.7.2.min');
+  require('lib/emberjs/lib/ember');
+  var XMLmode = require('ace/mode/xml').Mode;
+  var JSONmode = require('ace/mode/json').Mode;
   
-  init: function() {
-    this._super();
-    this.set('attributes',[]);
-    this.set('children',[]);
-  },
-  parseJSON:function(data) {
-    var self = this;
-    $.each(data, function(key, value) {
-      if(key=='@') {
-        $.each(value, function(attr_name, attr_value) {
-           var attr_obj = App.Attribute.create({key:attr_name,value:attr_value});
-           self.get('attributes').pushObject(attr_obj);
-        });
-      } else {
-        var children = self.get('children');
-        var child = App.Element.create({name:key});
-        if(typeof value === 'object') {
-          if(value instanceof Array) {
-            $.each(value, function(idx, array_obj) {
-              var tmp_child = App.Element.create({name:key});
-              tmp_child.parseJSON(array_obj);
-              tmp_child.set('show',true);
-              children.pushObject(tmp_child);
-            });
-          } else {
-            child.parseJSON(value);
-            child.set('show',true);
-            children.pushObject(child);
-          }
-        } else {
-          if(typeof value === 'string') {
-            child.set('text',value);
-            child.set('show',true);
-            children.pushObject(child);
-          }
-        }
+  var ace = require('ace/ace');
+  var theme = require("ace/theme/textmate");
+  var Split = require('ace/split').Split;
+  var xml_editor = null;
+  var json_viewer = null;
+  var handlebars_editor = null;
+  var xml_viewer = null;
+  
+  $(document).ready(function() {
+     var split = new Split(document.getElementById("editor"),theme,4);
+     split.setOrientation(split.BELOW);
+     xml_editor = split.getEditor(0);
+     xml_editor.getSession().setMode(new XMLmode());
+
+     json_viewer = split.getEditor(1)
+     json_viewer.getSession().setMode(new JSONmode());
+     json_viewer.setReadOnly(true);
+     
+     handlebars_editor = split.getEditor(2)
+     handlebars_editor.getSession().setMode(new XMLmode());
+
+     xml_viewer = split.getEditor(3)
+     xml_viewer.getSession().setMode(new XMLmode());
+     xml_viewer.setReadOnly(true);
+     
+     // set for test
+     xml_editor.setValue('<xml a="1"><b>1234</b></xml>');
+     handlebars_editor.setValue('<nook></nook>');
+  });
+  
+  $("#convert").on('click', function() {
+    $.ajax({
+      url: 'ajax/xml2json',
+      type: 'POST',            
+      data: JSON.stringify({ xml: xml_editor.getValue()}),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",                        
+      success: function(data) {                    
+        json_viewer.setValue(JSON.stringify(data));
       }
     });
-  }
+  });
+
+
+  $("#transform").on('click', function() {
+    var template = Handlebars.compile(handlebars_editor.getValue());
+    xml_viewer.setValue(template(JSON.parse(json_viewer.getValue())));
+  });
+
 });
-
-App.xmlController = Ember.Object.create({
-  content: null,
-  xml: null,
-
-  xml_text:function() {
-    return JSON.stringify(this.get('xml'));
-  }.property('xml'),
-  load: function() {
-    self = this;
-    var root = App.Element.create({name:'xml'});
-    self.set('content', root);
-    root.set('show',true);
-    
-    $.getJSON('ajax/loadxml', function(data) {
-      self.set('xml', data);
-      self.get('content').parseJSON(data);
-    });
-
-  },
-
-    
-});
-
-App.ElementView = Ember.View.extend({
-  tagName: 'ul',
-  templateName: 'XMLViewer',
-
-  click: function() {
-    var element = this.get('content');
-    console.log(element.get('name'));
-    var show = element.get('show');
-    if(show) {
-        element.set('show',false);
-    } else {
-        element.set('show',true);
-
-    }
-    return false;
-  },
-  
-  
-});
-
-
-
-
-

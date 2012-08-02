@@ -1,44 +1,13 @@
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-        <script src="/static/js/ember-0.9.8.1.min.js"></script>        
-        <script src="/static/js/app.js"></script>
+        <script data-main="/static/js/app.js" src="/static/js/lib/requirejs/require.js"></script>
         <link href='/static/style.css' rel='stylesheet' type='text/css'>                        
-        
     </head>    
     <body>
-        <script type='text/x-handlebars' data-template-name='XMLViewer'>
-            <font color="red"><b>{{#if content.show }} -  {{else}} + {{/if}}</b></font>
-            <b>&lt;</b> 
-            <b class="tag">{{content.name}}</b> 
-            {{#each content.attributes }}
-                {{this.key}}="{{this.value}}" 
-            {{/each}}
-            <b>&gt;</b>
-            {{#if content.show }}
-                {{#each content.children }}
-                    {{view App.ElementView contentBinding="this" }}
-                {{/each}}
-                {{content.text}}
-            {{/if}}
-            <b>&lt;&#47;</b><b class="tag">{{content.name}}</b><b>&gt;</b>
-    </script>
-    
-    <script type='text/x-handlebars'>
-        <b>{{App.name}}</b>
-    </script>
-    
-    <table>
-        <tr>
-            <td width="75%">
-                <script type='text/x-handlebars'>
-                    {{view App.ElementView contentBinding="App.xmlController.content" }}
-
-                </script>                    
-            </td>    
-   
-        </tr>
-    </table>
-    
+      <div id="menu">
+        <input id="convert" type="button" value="Convert">
+        <input id="transform" type="button" value="Transform">
+      </div>
+      <div id="editor"></div>
     </body>
 </html>
