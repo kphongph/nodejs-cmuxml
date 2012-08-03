@@ -23,8 +23,14 @@ body {
 }
 
 
-#editor {
-  width: 950px;
+#xml_editor {  
+  width: 450px;
   height: 600px;
-  position: relative;
+  position:relative;
+}
+
+#handlebars_editor {  
+  width: 450px;
+  height: 600px;
+  position:relative;
 }

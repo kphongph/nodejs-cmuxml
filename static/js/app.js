@@ -8,11 +8,12 @@ define(function(require, exports, modules) {
   require('lib/jquery-1.7.2.min');
   require('lib/emberjs/lib/ember');
   require('lib/vkbeautify.0.98.01.beta');
-
+    
   var XMLmode = require('ace/mode/xml').Mode;
   var JSONmode = require('ace/mode/json').Mode;
   
   var ace = require('ace/ace');
+  var dom = require("ace/lib/dom");
   var theme = require("ace/theme/textmate");
   var Split = require('ace/split').Split;
   var xml_editor = null;
@@ -20,17 +21,22 @@ define(function(require, exports, modules) {
   var handlebars_editor = null;
   var xml_viewer = null;
   
+    
+  
   $(document).ready(function() {
-     var split = new Split(document.getElementById("editor"),theme,4);
+      
+      
+     var split = new Split(document.getElementById("xml_editor"),theme,2);
      split.setOrientation(split.BELOW);
      split.setFontSize(14);
-     xml_editor = split.getEditor(0);
+     xml_editor = split.getEditor(0);          
+     
      xml_editor.commands.addCommands([{
        name: "prettyprint",
        bindKey: {win:"Ctrl-P"},
        exec: function(editor) {
          editor.setValue(vkbeautify.xml(editor.getValue(),2)); 
-         editor.clearSelection();
+         editor.clearSelection();         
        }
      },{
        name: "converttojson",
@@ -64,13 +70,36 @@ define(function(require, exports, modules) {
      json_viewer.setShowPrintMargin(false);
      json_viewer.setTheme('ace/theme/idle_fingers');
      
+     var split = new Split(document.getElementById("handlebars_editor"),theme,2);
+     split.setOrientation(split.BELOW);
+     split.setFontSize(14);
+     split.resize();
+
      
-     handlebars_editor = split.getEditor(2)
+     handlebars_editor = split.getEditor(0)
      handlebars_editor.setFadeFoldWidgets(false);
      handlebars_editor.getSession().setMode(new XMLmode());
      handlebars_editor.getSession().setFoldStyle("markbegin");
+     
+     handlebars_editor.commands.addCommands([{
+       name: "prettyprint",
+       bindKey: {win:"Ctrl-P"},
+       exec: function(editor) {
+         editor.setValue(vkbeautify.xml(editor.getValue(),2)); 
+         editor.clearSelection();         
+       }
+     },{
+       name: "transform",
+       bindKey: {win:"Ctrl-C"},
+       exec: function(editor) {
+         var template = Handlebars.compile(editor.getValue());
+         xml_viewer.setValue(template(JSON.parse(json_viewer.getValue())));
+         xml_viewer.clearSelection();
+       }
+     }]);
+          
 
-     xml_viewer = split.getEditor(3)
+     xml_viewer = split.getEditor(1)
      xml_viewer.getSession().setMode(new XMLmode());
      xml_viewer.setReadOnly(true);
      xml_viewer.renderer.setShowGutter(false);
@@ -81,10 +110,14 @@ define(function(require, exports, modules) {
      
      
      // set for test
-     xml_editor.setValue('<xml a="1"><b>1234</b></xml>');
+     xml_editor.setValue('<xml a="1"><b>1234</b></xml>');     
      xml_editor.clearSelection();
+     json_viewer.setValue('{}');
+     json_viewer.clearSelection();
      handlebars_editor.setValue('<nook></nook>');
      handlebars_editor.clearSelection();
+          
+     
      
   });
   
