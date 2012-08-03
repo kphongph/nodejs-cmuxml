@@ -7,6 +7,8 @@ requirejs.config({
 define(function(require, exports, modules) {
   require('lib/jquery-1.7.2.min');
   require('lib/emberjs/lib/ember');
+  require('lib/vkbeautify.0.98.01.beta');
+
   var XMLmode = require('ace/mode/xml').Mode;
   var JSONmode = require('ace/mode/json').Mode;
   
@@ -23,6 +25,32 @@ define(function(require, exports, modules) {
      split.setOrientation(split.BELOW);
      split.setFontSize(14);
      xml_editor = split.getEditor(0);
+     xml_editor.commands.addCommands([{
+       name: "prettyprint",
+       bindKey: {win:"Ctrl-P"},
+       exec: function(editor) {
+         editor.setValue(vkbeautify.xml(editor.getValue(),2)); 
+         editor.clearSelection();
+       }
+     },{
+       name: "converttojson",
+       bindKey: {win:"Ctrl-C"},
+       exec: function(editor) {
+         $.ajax({
+           url: 'ajax/xml2json',
+           type: 'POST',            
+           data: JSON.stringify({ xml: editor.getValue()}),
+           contentType: "application/json; charset=utf-8",
+           dataType: "json",                        
+           success: function(data) {                    
+             var str = vkbeautify.json(JSON.stringify(data),2); 
+             json_viewer.setValue(str);
+             json_viewer.clearSelection();
+           }
+         });
+       }
+     }]);
+
      xml_editor.setFadeFoldWidgets(false);
      xml_editor.getSession().setMode(new XMLmode());
      xml_editor.getSession().setFoldStyle("markbegin");
@@ -68,7 +96,8 @@ define(function(require, exports, modules) {
       contentType: "application/json; charset=utf-8",
       dataType: "json",                        
       success: function(data) {                    
-        json_viewer.setValue(JSON.stringify(data));
+        var str = vkbeautify.json(JSON.stringify(data),2); 
+        json_viewer.setValue(str);
         json_viewer.clearSelection();
       }
     });
