@@ -18,13 +18,14 @@ define(function(require, exports, modules) {
   var xml_editor = null;
   var json_viewer = null;
   var handlebars_editor = null;
-  var xml_viewer = null;
-  
+  var xml_viewer = null;  
     
   
   
   $(document).ready(function() {
-      
+    
+     var editor = require('xml_editor').edit('test_editor');
+     /* 
      var first_split = new Split(document.getElementById("xml_editor"),theme,2);
      first_split.setOrientation(first_split.BELOW);
      first_split.setFontSize(14);
@@ -120,7 +121,7 @@ define(function(require, exports, modules) {
      json_viewer.clearSelection();
      handlebars_editor.setValue('<nook></nook>');
      handlebars_editor.clearSelection();
-          
+     */          
   });
   
   $("#convert").on('click', function() {

@@ -22,14 +22,9 @@ body {
     color: #FFFFFF
 }
 
-#xml_container {  
-  padding: 20px;
-}
-
 #xml_editor {  
   width: 450px;
   height: 600px;
-  position:relative;
 }
 
 #handlebars_editor {  
