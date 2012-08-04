@@ -5,7 +5,6 @@ requirejs.config({
 });
 
 define(function(require, exports, modules) {
-  require('lib/jquery-1.7.2.min');
   require('lib/emberjs/lib/ember');
   require('lib/vkbeautify.0.98.01.beta');
     
@@ -23,13 +22,13 @@ define(function(require, exports, modules) {
   
     
   
+  
   $(document).ready(function() {
       
-      
-     var split = new Split(document.getElementById("xml_editor"),theme,2);
-     split.setOrientation(split.BELOW);
-     split.setFontSize(14);
-     xml_editor = split.getEditor(0);          
+     var first_split = new Split(document.getElementById("xml_editor"),theme,2);
+     first_split.setOrientation(first_split.BELOW);
+     first_split.setFontSize(14);
+     xml_editor = first_split.getEditor(0);          
      
      xml_editor.commands.addCommands([{
        name: "prettyprint",
@@ -61,7 +60,7 @@ define(function(require, exports, modules) {
      xml_editor.getSession().setMode(new XMLmode());
      xml_editor.getSession().setFoldStyle("markbegin");
 
-     json_viewer = split.getEditor(1)
+     json_viewer = first_split.getEditor(1)
      json_viewer.getSession().setMode(new JSONmode());
      json_viewer.setReadOnly(true);
      json_viewer.renderer.setShowGutter(false);
@@ -69,6 +68,11 @@ define(function(require, exports, modules) {
      json_viewer.setHighlightActiveLine(false);
      json_viewer.setShowPrintMargin(false);
      json_viewer.setTheme('ace/theme/idle_fingers');
+     
+     $('#xml_editor').resizable();
+     $('#xml_editor').bind('resize', function(event, ui) {
+       first_split.resize();
+     });
      
      var split = new Split(document.getElementById("handlebars_editor"),theme,2);
      split.setOrientation(split.BELOW);
@@ -117,8 +121,6 @@ define(function(require, exports, modules) {
      handlebars_editor.setValue('<nook></nook>');
      handlebars_editor.clearSelection();
           
-     
-     
   });
   
   $("#convert").on('click', function() {

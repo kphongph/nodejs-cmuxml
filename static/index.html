@@ -2,21 +2,22 @@
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+        <link rel="stylesheet" 
+           href="http://code.jquery.com/ui/1.8.22/themes/base/jquery-ui.css" 
+           type="text/css" 
+           media="all" />
         <script data-main="/static/js/app.js" src="/static/js/lib/requirejs/require.js"></script>
         <link href='/static/style.css' rel='stylesheet' type='text/css'>                        
     </head>    
-    <body>
+
+    <body style="font-size:70%;">
       <div id="menu">
         <input id="convert" type="button" value="Convert">
         <input id="transform" type="button" value="Transform">
       </div>
-      <table>
-          <tr>
-              <td><div id="xml_editor"></div></td>
-              <td><div id="handlebars_editor"></div></td>
-          </tr>
-      </table>
-      
-      
+      <div id="xml_container">
+        <div id="xml_editor"></div>
+      </div>
+      <div id="handlebars_editor"></div>
     </body>
 </html>
