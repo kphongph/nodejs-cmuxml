@@ -8,32 +8,65 @@
            media="all" />
         <script data-main="/static/js/app.js" src="/static/js/lib/requirejs/require.js"></script>
         <link href='/static/style.css' rel='stylesheet' type='text/css'>                        
+<style>        
+#xml_header {
+  position:absolute;
+  width:450px;
+  background:#eeeeee;
+  text-align:center;
+  font-weight:bold;
+}
+
+#xml_editor {
+  position:absolute;
+  top:25px;
+  width:450px;
+  height:300px;
+}
+
+#handlebars_header {
+  position:absolute;
+  left:460px;
+  width:450px;
+  background:#eeeeee;
+  text-align:center;
+  font-weight:bold;
+}
+
+#handlebars_editor {
+  position:absolute;
+  top:25px;
+  height:300px;
+  left:460px;
+  width:450px;
+}
+
+#result_header {
+  position:absolute;
+  width:910px;
+  top:335px;
+  padding:5px;
+  background:#eeeeee;
+  font-weight:bold;
+}
+
+#result_viewer {
+  position:absolute;
+  top:370px;
+  height:200px;
+  width:910px;
+}
+
+
+</style>        
     </head>    
 
-    <body style="font-size:70%">
-        
-        <div id="tabs">
-            <ul>
-                <li><a href="#test_editor">XML Editor</a></li>
-                <li><a href="#json_viewer">JSON Viewer</a></li>
-            </ul>
-            <div id="test_editor">Jello</div>
-            <div id="json_viewer">Hello</div>
-        </div>
-        
-        
-      
-      <!--  
-      <div id="menu">
-        <input id="convert" type="button" value="Convert">
-        <input id="transform" type="button" value="Transform">
-      </div>
-      
-      
-      <div id="container">
-        <div id="xml_editor"></div>
-      </div>
-      <div id="handlebars_editor"></div>
-      -->
+    <body style="font-size:80%">
+       <div id="xml_header">XML Data Source Editor</div>
+       <div id="xml_editor"></div>
+       <div id="handlebars_header">Template Editor</div>
+       <div id="handlebars_editor"></div>
+       <div id="result_header">Result</div>
+       <div id="result_viewer"></div>
     </body>
 </html>

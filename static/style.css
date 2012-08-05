@@ -22,13 +22,3 @@ body {
     color: #FFFFFF
 }
 
-#xml_editor {  
-  width: 450px;
-  height: 600px;
-}
-
-#handlebars_editor {  
-  width: 450px;
-  height: 600px;
-  position:relative;
-}
