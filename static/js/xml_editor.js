@@ -44,7 +44,7 @@ define(function(require, exports, modules) {
                 
         
         $('#'+el).width($(window).width()*0.80);
-        $('#'+el).height($(window).height()*0.60);
+        $('#'+el).height($(window).height()*0.60);                
         editor.resize();
         
         $(window).bind('resize', function(event, ui) {            

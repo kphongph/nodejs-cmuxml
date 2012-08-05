@@ -5,6 +5,7 @@ requirejs.config({
 });
 
 define(function(require, exports, modules) {
+    /*
   require('lib/emberjs/lib/ember');
   require('lib/vkbeautify.0.98.01.beta');
     
@@ -19,12 +20,13 @@ define(function(require, exports, modules) {
   var json_viewer = null;
   var handlebars_editor = null;
   var xml_viewer = null;  
-    
+    */
   
   
   $(document).ready(function() {
     
-     var editor = require('xml_editor').edit('test_editor');
+    var editor = require('xml_editor').edit('test_editor');
+    $( "#tabs" ).tabs();
      /* 
      var first_split = new Split(document.getElementById("xml_editor"),theme,2);
      first_split.setOrientation(first_split.BELOW);
