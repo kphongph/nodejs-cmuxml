@@ -43,7 +43,7 @@
   width:450px;
 }
 
-#result_header {
+#button_header {
   position:absolute;
   width:900px;
   top:340px;
@@ -52,9 +52,25 @@
   font-weight:bold;
 }
 
+#result_header {
+  position:absolute;
+  width:900px;
+  top:350px;
+  padding:5px;
+  background:#eeeeee;
+  font-weight:bold;
+}
+
 #result_viewer {
   position:absolute;
-  top:370px;
+  top:400px;
+  height:200px;
+  width:910px;
+}
+
+#result_edit {
+  position:absolute;
+  top:400px;
   height:200px;
   width:910px;
 }
@@ -68,7 +84,8 @@
        <div id="xml_editor"></div>
        <div id="handlebars_header">Template Editor</div>
        <div id="handlebars_editor"></div>
-       <div id="result_header">Result</div>
+       <div id="result_header" class="demo">Result <input id="editmode" type="button" value="Edit" ><input id="viewmode" type="button" value="View" ></div>
        <div id="result_viewer"></div>
+       <div id="result_edit"></div>
     </body>
 </html>

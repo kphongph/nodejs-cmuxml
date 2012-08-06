@@ -37,8 +37,32 @@ define(function(require, exports, modules) {
         result = result.replace(/(\s)*\</g,'<');
         result_viewer.setValue(vkbeautify.xml(result,2));
         result_viewer.clearSelection();
+	result_edit.setValue(vkbeautify.xml(result,2));     
+	result_edit.clearSelection();
       }
     });
+    
+    $("#editmode").button().click( 
+    function() {
+	var result_edit = require('result_edit').edit({
+	  element: 'result_edit'
+	});
+
+	var template = Handlebars.compile(result_viewer.getValue());
+	var result = template(json_data);
+	result_edit.setValue(vkbeautify.xml(result,2));     
+	result_edit.clearSelection();
+	$("#result_viewer").hide();
+	$("#result_edit").show();
+  });
+  
+   $("#viewmode").button().click(
+   function() { 
+       $("#result_edit").hide();
+       $("#result_viewer").show();
+    });
+  
+
     
     var s_temp = '{{! Access attribute }}\n';
     s_temp += '<att>{{xml.$.a}}</att>\n\n';
