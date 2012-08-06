@@ -44,12 +44,8 @@ define(function(require, exports, modules) {
     s_temp += '<att>{{xml.$.a}}</att>\n\n';
     s_temp += '{{! Access array of element }} \n';
     s_temp += '{{#each xml.b.e}}\n';
-    s_temp += '  {{#if _ }}\n';
-    s_temp += '    <a text="{{_}}">\n';
-    s_temp += '  {{else}}\n';
-    s_temp += '    <a text="{{this}}">\n';
-    s_temp += '  {{/if}}\n';
-    s_temp += '  {{$.a1}}\n';
+    s_temp += '  <a text="{{_}}">\n';
+    s_temp += '    {{$.a1}}\n';
     s_temp += '  </a>\n';
     s_temp += '{{/each}}\n\n';
     s_temp += '<e>\n';

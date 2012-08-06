@@ -1,7 +1,7 @@
 var express = require("express");
 var xml2js = require('xml2js');
 var fs = require('fs');
-var app = express.createServer();
+var app = express();
 
 app.configure(function() {
   app.use(express.bodyParser());
@@ -40,6 +40,7 @@ app.post('/ajax/xml2json', function(req, res) {
         attrkey: "$",
         charkey: "_",
         explicitArray: false,
+        explicitCharkey: true,
         mergeAttrs: false,
         explicitRoot: true,
         normalize: false,

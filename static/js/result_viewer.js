@@ -26,6 +26,9 @@ define(function(require, exports, modules) {
         editor.getSession().setMode(new XMLmode());
         editor.getSession().setFoldStyle("markbegin");
         editor.setFontSize(14);
+        editor.setTheme('ace/theme/tomorrow_night_eighties');
+        editor.setHighlightActiveLine(false);
+        editor.renderer.hideCursor();
         editor.setReadOnly(true);
         return editor;
     };            
