@@ -26,7 +26,7 @@ define(function(require, exports, modules) {
               var str = editor.getValue();
               str = str.replace(/\n/g, "");
               console.log(str);
-              context.transform(str);
+              context.transform(str);/**/
             }
         }]);
         

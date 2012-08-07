@@ -11,8 +11,32 @@ define(function(require, exports, modules) {
   var template = null;
   var json_data = {};
 
+
   $(document).ready(function() {
-    var xml_editor = require('xml_editor').edit({
+        
+      var result_viewer = require('file_editor').edit({
+     element: 'result_viewer'      
+    });
+
+    result_viewer.openFile('foo.xml');
+    $("#editmode").button();
+    
+    $("#editmode").bind('click', function() {
+        var mode = $(this).attr('value');
+        if (mode == "Edit") {
+            $(this).attr('value','Save');            
+        } else {
+            $(this).attr('value','Edit');
+        }
+        result_viewer.switchReadMode();        
+    });
+
+    
+    
+  });
+
+  function test() {
+      var xml_editor = require('xml_editor').edit({
       element:'xml_editor',
       convert: function(data) {
         json_data = data;
@@ -23,9 +47,6 @@ define(function(require, exports, modules) {
     xml_editor.setValue(sample_str);     
     xml_editor.clearSelection();
     
-    var result_viewer = require('result_viewer').edit({
-      element: 'result_viewer'
-    });
 
      
     var handlebar_editor = require('handlebars_editor').edit({
@@ -39,7 +60,7 @@ define(function(require, exports, modules) {
         result_viewer.clearSelection();
       }
     });
-    
+
     var s_temp = '{{! Access attribute }}\n';
     s_temp += '<att>{{xml.$.a}}</att>\n\n';
     s_temp += '{{! Access array of element }} \n';
@@ -53,7 +74,8 @@ define(function(require, exports, modules) {
     s_temp += '</e>\n';
     handlebar_editor.setValue(s_temp);
     handlebar_editor.clearSelection();
-  });
+  }
+  
 });
 
 

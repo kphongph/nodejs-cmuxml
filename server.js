@@ -56,6 +56,20 @@ app.post('/ajax/xml2json', function(req, res) {
     });    
 });
 
+app.post('/ajax/readfile', function(req, res) {
+    var data = fs.readFileSync(__dirname+'/repository/'+req.body.file,"utf8");    
+    res.json({'content':data});    
+});
+
+app.post('/ajax/savefile', function(req, res) {        
+    fs.writeFile(__dirname+'/repository/'+req.body.file,req.body.content, encoding="utf8", function(err) {
+        if (err) res.json({'status':'error - '+err});
+        res.json({'status':'ok'});
+    });
+});
+
+
+
 app.get('/ajax/loadxml', function(req, res) {
     var parser = new xml2js.Parser();
     parser.addListener('end', function(result) {
@@ -67,18 +81,3 @@ app.get('/ajax/loadxml', function(req, res) {
 });
 
 var server = app.listen(3000);
-
-//var everyone = require("now").initialize(server,{socketio:{transports:['xhr-polling','jsonp-polling']}});
-//var everyone = require("now").initialize(server);
-
-/*
-everyone.now.loadXML = function(callback) {
-  var parser = new xml2js.Parser();
-  parser.addListener('end', function(result) {
-    callback(result);
-  });
-  fs.readFile(__dirname + '/test/foo.xml', function(err, data) {
-    parser.parseString(data);
-  });
-};
-*/

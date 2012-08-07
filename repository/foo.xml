@@ -1,0 +1,204 @@
+<?xml version="1.1"?>
+<xcheqa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+    version="1.0" type="sar">
+  <info >
+    <eduyear>{{year|add:"543"}}</eduyear>
+    <univid>02000</univid>
+    <facid>{{facid}}</facid>
+    <lastupdated>{{time|date:'c'}}+07:00</lastupdated>
+    <mission>3</mission>
+  </info>
+  <commondataset />
+  <objective>
+    <objectiveclass index="2">
+      <strength></strength>
+      <weakness></weakness>
+      <bestpractice></bestpractice>
+      <kpi>
+        <kpiclass index="๒.๓" type="A">
+          <nexttarget></nexttarget>
+          <target></target>
+          <success></success>
+          <suggest />
+          <item>
+            <itemclass index="0">
+              <result></result>
+              <reference></reference>
+              <pass></pass>
+            </itemclass>
+          </item>
+          <cds>
+            <cdsclass>
+              <cdsid>91</cdsid>
+              <name>จำนวนผู้สำเร็จการศึกษาระดับปริญญาโททั้งหมด</name>
+              <value>{{student_info.finish_master}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>166</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในรายงานสืบเนื่องจากการประชุมวิชาการระดับชาติ (Proceeding) ที่ได้รับการยอมรับในสาขา </name>
+              <value>{{content.id1.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>167</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในรายงานสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ หรือจำนวนการตีพิมพ์ในวารสารวิชาการระดับชาติที่ปรากฎในฐานข้อมูล TCI หรือมีการตีพิมพ์ในวารสารวิชาการระดับชาติที่ได้รับการยอมรับในสาขา</name>
+              <value>{{content.id2.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>170</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการระดับนานาชาติที่ได้รับการยอมรับในสาขาหรือในระดับสากล เช่น ISI หรือ Scopus</name>
+              <value>{{content.id3.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>176</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ระดับสถาบันหรือจังหวัด</name>
+              <value>{{content.id4.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>177</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับชาติ</name>
+              <value>{{content.id5.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>178</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับความร่วมมือระหว่างประเทศ</name>
+              <value>{{content.id6.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>179</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับภูมิภาคอาเซียน</name>
+              <value>{{content.id7.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>180</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับนานาชาติ </name>
+              <value>{{content.id8.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>672</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่มีการตีพิมพ์เผยแพร่ในลักษณะใดลักษณะหนึ่ง </name>
+              <value>{{content.id9.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>677</cdsid>
+              <name>(สบช.)จำนวนนักศึกษาที่สำเร็จการศึกษาภายในเวลาที่กำหนดในหลักสูตร</name>
+              <value></value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>678</cdsid>
+              <name>(สบช.)จำนวนนักศึกษารับเข้าทั้งหมด (รหัสเดียวกัน)</name>
+              <value></value>
+            </cdsclass>
+          </cds>
+        </kpiclass>
+        <kpiclass index="๒.๔" type="A">
+          <nexttarget>5</nexttarget>
+          <target>5</target>
+          <success>true</success>
+          <suggest />
+          <item>
+            <itemclass index="0">
+              <result></result>
+              <reference></reference>
+              <pass>false</pass>
+            </itemclass>
+          </item>
+          <cds>
+            <cdsclass>
+              <cdsid>92</cdsid>
+              <name>จำนวนผู้สำเร็จการศึกษาระดับปริญญาเอกทั้งหมด</name>
+              <value>{{student_info.finish_phd}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>182</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในรายงานสืบเนื่องจากการประชุมวิชาการระดับชาติ </name>
+              <value></value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>183</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในรายงานสืบเนื่องจากการประชุมวิชาการระดับนานาชาติ หรือจำนวนการตีพิมพ์ในวารสารวิชาการระดับชาติที่ปรากฎในฐานข้อมูล TCI</name>
+              <value>{{content.id10.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>184</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการระดับชาติที่มีชื่อปรากฎในประกาศของ สมศ.</name>
+              <value>{{content.id11.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>185</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการระดับนานาชาติที่มีชื่อปรากฎอยู่ในประกาศของ สมศ.</name>
+              <value>{{content.id12.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>186</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการระดับนานาชาติที่มีชื่อปรากฏอยู่ในฐานข้อมูลสากล ISI</name>
+              <value>{{content.id13.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>187</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) โดยวารสารนั้นถูกจัดอยู่ในควอไทล์ที่ 4 (Q4) ในปีล่าสุด ใน subject category ที่ตีพิมพ์</name>
+              <value>{{content.id14.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>188</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) โดยวารสารนั้นถูกจัดอยู่ในควอไทล์ที่ 3 (Q3) ในปีล่าสุด ใน subject category ที่ตีพิมพ์ </name>
+              <value>{{content.id15.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>189</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) โดยวารสารนั้นถูกจัดอยู่ในควอไทล์ที่ 2 (Q2) ในปีล่าสุด ใน subject category ที่ตีพิมพ์</name>
+              <value>{{content.id16.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>190</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) โดยวารสารนั้นถูกจัดอยู่ในควอไทล์ที่ 1 (Q1) ในปีล่าสุด ใน subject category ที่ตีพิมพ์ หรือมีการตีพิมพ์ในวารสารวิชาการระดับนานาชาติที่ปรากฏในฐานข้อมูลสากล ISI และฐานข้อมูล Scopus</name>
+              <value>{{content.id17.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>999</cdsid>
+              <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) หรือ ISI หรือ Scopus</name>
+              <value>{{content.id23.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>589</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ระดับสถาบันหรือจังหวัด</name>
+              <value>{{content.id18.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>590</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับชาติ</name>
+              <value>{{content.id19.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>591</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับความร่วมมือระหว่างประเทศ</name>
+              <value>{{content.id20.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>592</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับภูมิภาคอาเซียน</name>
+              <value>{{content.id21.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>593</cdsid>
+              <name>จำนวนผลงานสร้างสรรค์จากศิลปนิพนธ์ที่ได้รับการเผยแพร่ในระดับนานาชาติ</name>
+              <value>{{content.id22.count|default:0}}</value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>679</cdsid>
+              <name>(สบช.)จำนวนผู้สำเร็จการศึกษาที่สอบผ่านใบอนุญาตประกอบวิชาชีพภายใน 1 ปี</name>
+              <value></value>
+            </cdsclass>
+            <cdsclass>
+              <cdsid>680</cdsid>
+              <name>(สบช.)จำนวนผู้สำเร็จการศึกษาทั้งหมดในปีการศึกษาเดียวกัน</name>
+              <value></value>
+            </cdsclass>
+          </cds>
+        </kpiclass>
+      </kpi>
+    </objectiveclass>
+  </objective>
+  <intro />
+  <assessorreport />
+</xcheqa>
