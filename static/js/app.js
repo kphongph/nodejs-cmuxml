@@ -58,9 +58,10 @@ define(function(require, exports, modules) {
         result = result.replace(/(\s)*\</g,'<');
         result_viewer.setValue(vkbeautify.xml(result,2));
         result_viewer.clearSelection();
+	result_edit.setValue(vkbeautify.xml(result,2));     
+	result_edit.clearSelection();
       }
     });
-
     var s_temp = '{{! Access attribute }}\n';
     s_temp += '<att>{{xml.$.a}}</att>\n\n';
     s_temp += '{{! Access array of element }} \n';
