@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="/static/js/ember-0.9.8.1.min.js"></script>        
+        <script src="/static/js/app_test.js"></script>
+	 
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" />
+	<style>
+	    body {
+		padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+	    }
+	</style>
+	<link href="/static/css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="/static/css/app.css" rel="stylesheet" />
+	<link href='/static/style.css' rel='stylesheet' type='text/css'> 
+                              
+    </head>    
+    <body>
+
+    <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="brand" href="#">CMUXML System</a>
+
+          </div>
+        </div>
+	<div class="container">
+        beta1
+      </div>
+    </script>
+   
+    <script type="text/x-handlebars">  
+     <div class="hero-unit">
+        <h1>XML Manipulation</h1>
+        <p>
+          
+        </p>
+      </div>
+    <table width="90%" align="center">
+        <tr><td></td></tr>
+        <tr>
+            <td width="40%" valign="top">
+                <h4>XMLEditor</h4>
+                {{view  App.XMLEditorView }}                            
+            </td>    
+            <td width="40%" valign="top">
+                <h4>JSONFormat</h4>
+                {{#view App.JSONDisplayView }}                                    
+                    {{content}}
+                {{/view}}
+            </td>
+        </tr>
+        <tr>
+            <td valign="top">
+                <h4>JSONEditor</h4>
+                {{view App.JSONEditorView}}
+            </td>
+            <td valign="top">
+                <h4>XMLFormat</h4>
+                 {{#view App.XMLDisplayView }}                                    
+                        {{content}}
+                {{/view}}
+                
+            </td>
+        </tr>
+    </table>
+    </script>
+    
+    
+    </body>
+</html>

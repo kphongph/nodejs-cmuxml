@@ -1,4 +1,4 @@
-<?xml version="1.1"?>
+<?xml version="1.0"?>
 <xcheqa xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
     version="1.0" type="sar">
@@ -154,6 +154,7 @@
               <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) โดยวารสารนั้นถูกจัดอยู่ในควอไทล์ที่ 1 (Q1) ในปีล่าสุด ใน subject category ที่ตีพิมพ์ หรือมีการตีพิมพ์ในวารสารวิชาการระดับนานาชาติที่ปรากฏในฐานข้อมูลสากล ISI และฐานข้อมูล Scopus</name>
               <value>{{content.id17.count|default:0}}</value>
             </cdsclass>
+            
             <cdsclass>
               <cdsid>999</cdsid>
               <name>จำนวนบทความวิจัยฯ ที่ตีพิมพ์ในวารสารวิชาการที่มีชื่อปรากฎในฐานข้อมูลการจัดอันดับวารสาร SJR (SCImago Journal Rank :www.scimagojr.com) หรือ ISI หรือ Scopus</name>

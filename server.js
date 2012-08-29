@@ -3,6 +3,22 @@ var xml2js = require('xml2js');
 var fs = require('fs');
 var app = express();
 
+
+var mongo = require('mongodb');
+var host = "localhost";
+var port = mongo.Connection.DEFAULT_PORT;
+var server = new mongo.Server(host,port, {auto_reconnect: false});
+var db = new mongo.Db('mydb', server),
+var Grid = mongo.Grid;
+
+
+//var taskList = new TaskList('mongodb://Your_MongoDB_VM_name.cloudapp.net/tasks');
+
+var Upload = require('upload');
+var upload = new Upload(mydb);
+//var upload = new Upload('mongodb://mongodbserver/tasks');
+
+
 app.configure(function() {
   app.use(express.bodyParser());
   app.use('/static', express.static(__dirname+'/static'));  
@@ -21,7 +37,6 @@ app.get('/test', function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});  
   res.end(fs.readFileSync(__dirname+'/static/test.html'));    
 });
-
 
 
 app.post('/ajax/xml2json', function(req, res) {
@@ -68,6 +83,18 @@ app.post('/ajax/savefile', function(req, res) {
     });
 });
 
+app.get('/upload', function(req, res) {
+    res.writeHead(200, {'Content-Type': 'text/html'});  
+    res.end(fs.readFileSync(__dirname+'/static/upload.html'));  
+  //db.collection("users",function(err,collection){
+  //      console.log(req.params.id);
+   //     collection.save({email: "srirangan@gmail.com", password: "iLoveMongo", sex: "male"}, function(err, saved) {
+   //         if( err || !saved ) console.log("User not saved");
+   //         else console.log("User saved");
+    //    });
+//});
+});
+//app.get('/upload', upload.addUpload.bind(upload));
 
 
 app.get('/ajax/loadxml', function(req, res) {

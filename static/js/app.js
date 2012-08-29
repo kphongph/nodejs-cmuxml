@@ -30,8 +30,6 @@ define(function(require, exports, modules) {
         }
         result_viewer.switchReadMode();        
     });
-
-    
     
   });
 

@@ -16,6 +16,7 @@ define(function(require, exports, modules) {
     var MultiSelect = require("ace/multi_select").MultiSelect;
 
     var Event = require("ace/lib/event");
+    
 
     
     exports.edit = function(context) {
