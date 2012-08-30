@@ -8,22 +8,133 @@ var mongo = require('mongodb');
 var host = "localhost";
 var port = mongo.Connection.DEFAULT_PORT;
 var server = new mongo.Server(host,port, {auto_reconnect: false});
-var db = new mongo.Db('mydb', server),
+var db = new mongo.Db('mydb', server);
 var Grid = mongo.Grid;
+var GridStore = mongo.GridStore;
+var ObjectID =  mongo.ObjectID;
 
 
 //var taskList = new TaskList('mongodb://Your_MongoDB_VM_name.cloudapp.net/tasks');
 
-var Upload = require('upload');
-var upload = new Upload(mydb);
+//var Upload = require('upload');
+//var upload = new Upload(mydb);
 //var upload = new Upload('mongodb://mongodbserver/tasks');
-
 
 app.configure(function() {
   app.use(express.bodyParser());
   app.use('/static', express.static(__dirname+'/static'));  
   app.set('view engine', 'jade');
   app.set('view options', {layout:false});
+});
+
+app.get('/mongo/create', function(req, res) {
+    db.open(function(err,client) {
+        if(!err) {                
+            var gridStore = new GridStore(client, req.query.file, 'w');
+            gridStore.open(function(err, gridStore) {
+                gridStore.write('', function(err, gridStore) {                    
+                    if(!err) {
+                        gridStore.close(function(err, result) {                        
+                            if(!err) {
+                                res.json(result);
+                                client.close();
+                            }
+                        });
+                    }
+                });
+            });
+        }
+    });
+});
+
+app.get('/mongo/list', function(req, res) {
+    db.open(function(err,client) {
+        if(!err) {                     
+            GridStore.list(client, {id:true}, function(err, items) {
+                var file_list = [];                
+                items.forEach(function(id) {
+                    file_list.push(id);
+                });
+                res.json({'status':file_list});
+                client.close();
+            });
+        }
+    });
+});
+
+app.get('/mongo/:id/content', function(req, res) {    
+    db.open(function(err,client) {
+        if(!err) {                
+            var gridStore = new GridStore(client, db.bson_serializer.ObjectID.createFromHexString(req.params.id), 'r');
+            gridStore.open(function(err, gridStore) {
+                gridStore.seek(0, function() {                                
+                    gridStore.read(function(err, data) { 
+                        if(data) {                                         
+                            res.json({'content':data.toString()}); 
+                        } else {
+                            res.json({'content': ''}); 
+                        }
+                        client.close();
+                    });
+                });
+            });
+        }
+    });
+});
+
+app.get('/mongo/:id/delete', function(req, res) {    
+    db.open(function(err,client) {
+        if(!err) {                
+            var fileId = db.bson_serializer.ObjectID.createFromHexString(req.params.id);
+            GridStore.exist(db, fileId, function(err, exist) {   
+                if(exist) {
+                    var gridStore = new GridStore(client, fileId, 'r');
+                    gridStore.open(function(err, gridStore) {                
+                        gridStore.unlink(function(err, result) { 
+                            if(!err) {                              
+                                res.json({'delete':req.params.id}); 
+                                client.close();                                        
+                            } else {
+                                console.log(err);
+                            }
+                        });
+                    });
+                } else {
+                    res.json({'status':'Error', 'message': 'File Does Not Exists'});
+                    client.close();
+                }
+            });
+        }
+    });
+});
+
+   
+app.get('/mongo/:id/update', function(req, res) {    
+    db.open(function(err,client) {
+        if(!err) {                
+            var fileId = db.bson_serializer.ObjectID.createFromHexString(req.params.id);
+            GridStore.exist(db, fileId, function(err, exist) {                
+                if(exist) {
+                    var gridStore = new GridStore(client, fileId, 'w');
+                    gridStore.open(function(err, gridStore) {
+                        gridStore.write(req.query.content, function(err, gridStore) {                    
+                            if(!err) {
+                                gridStore.close(function(err, result) {                        
+                                    if(!err) {
+                                        res.json(result);
+                                        client.close();
+                                    }
+                                });
+                            }
+                        });
+                    });
+                } else {
+                    res.json({'status':'Error', 'message': 'File Does Not Exists'});
+                    client.close();
+                }
+            });
+        }
+    });
 });
 
 app.get('/', function(req, res) {
@@ -37,7 +148,6 @@ app.get('/test', function(req, res) {
   res.writeHead(200, {'Content-Type': 'text/html'});  
   res.end(fs.readFileSync(__dirname+'/static/test.html'));    
 });
-
 
 app.post('/ajax/xml2json', function(req, res) {
 
