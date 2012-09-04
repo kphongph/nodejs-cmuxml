@@ -12,8 +12,7 @@ define(function(require, exports, modules) {
   var json_data = {};
 
 
-  $(document).ready(function() {
-        
+  $(document).ready(function() {        
       var result_viewer = require('file_editor').edit({
      element: 'result_viewer'      
     });

@@ -1,0 +1,18 @@
+help
+db
+db.fs.files.find()
+test.fs.files.find()
+db.fs.files.find()
+show collections
+db.help()
+db.version()
+db.fs
+db.fs.files
+db.fs.files.find()
+db help
+help
+db.test
+db.fs
+db.fs.files.help()
+db.fs.files.find().count()
+db

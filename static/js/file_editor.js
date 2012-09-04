@@ -57,7 +57,8 @@ define(function(require, exports, modules) {
         Editor.prototype.saveFile = function(context) {
             var self = this;
             $.ajax({
-                url: 'ajax/savefile',
+                //url: 'ajax/savefile',
+                url: '/mongo/create',
                 type: 'POST',            
                 data: JSON.stringify({ file: context.file, content:self.getValue()}),
                 contentType: "application/json; charset=utf-8",
