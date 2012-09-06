@@ -20,7 +20,7 @@ XMLMongo.prototype.getCollection = function(callback) {
                 callback(err);
             } else {
                 callback(null, xml_collection);
-                client.close();
+                //client.close();
             }
         })
     });

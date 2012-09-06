@@ -11,8 +11,8 @@ XMLView.prototype = {
                 client.close();  
             } else {
                 var file_list = [];
-                items.forEach(function(docs) {
-                    file_list.push(docs);
+                docs.forEach(function(entry) {
+                    file_list.push(entry);
                 });
                 
                 res.json(file_list);
