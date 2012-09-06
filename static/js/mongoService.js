@@ -10,9 +10,6 @@ angular.module('mongoService', ['ngResource']).
                 cb(content);
             });
         };                     
-        
-        
-                               
         return File;
 });
 

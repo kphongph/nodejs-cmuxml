@@ -34,27 +34,7 @@ app.configure(function() {
   app.use(app.router);
 });
 
-//app.post('/login', 
-//    passport.authenticate('local'),
-//        function(req, res) {
-            // If this function gets called, authentication was successful.
-            // `req.user` property contains the authenticated user.
- //             res.writeHead(200, {'Content-Type': 'text/html'});  
- //             res.end(fs.readFileSync(__dirname+'/login.html'));
- //   });
- 
- // Use the passport strategy.
-passport.use(new LocalStrategy(
-    function(username, password, done) {
 
-    // Use this as you normally would in Passport.js
-  }
-});
- 
-app.router.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/login'
-}));
 
 app.post('/mongo/create', function(req, res) {
     db.open(function(err,client) {

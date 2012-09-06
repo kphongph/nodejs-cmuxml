@@ -12,7 +12,6 @@ function fileCtrl($scope, File) {
 function detailCtrl($scope, $location,  $routeParams, File){
     var self = this;
     
-    
     File.get({id: $routeParams.fileId}, function(file) {
          self.original = file;
          $scope.file = new File(self.original);
